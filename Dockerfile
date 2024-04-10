@@ -7,14 +7,6 @@ ARG OS_VERSION=alpine3.19
 # Use Node.js Docker image as the base image, with specific Node and Debian versions
 FROM node:${NODE_VERSION}-${OS_VERSION} AS build
 
-# Set the container's default shell to Bash and enable some options
-#SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
-
-# Install Chromium browser and Download and verify Google Chrome’s signing key
-RUN apk update && \
-    apk add --no-cache python3 make g++ && \
-    rm -rf /var/cache/apk/*
-
 # Set the working directory to /app
 WORKDIR /app
 
@@ -41,8 +33,7 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 COPY --from=build /app .
 
-RUN apk update && \
-    apk add --no-cache chromium && \
+RUN apk add --no-cache chromium && \
     chmod 755 /usr/bin/chromium-browser && \
     rm -rf /var/cache/apk/* /app/node_modules/.cache
 
