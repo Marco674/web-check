@@ -1,5 +1,5 @@
 # Specify the Node.js version to use
-ARG NODE_VERSION=20
+ARG NODE_VERSION=21
 
 # Specify the Debian version to use, the default is "bullseye"
 ARG OS_VERSION=alpine3.19
@@ -12,7 +12,7 @@ FROM node:${NODE_VERSION}-${OS_VERSION} AS build
 
 # Install Chromium browser and Download and verify Google Chrome’s signing key
 RUN apk update && \
-    apk add --no-cache chromium python3 make g++ && \
+    apk add --no-cache python3 make g++ && \
     rm -rf /var/cache/apk/*
 
 # Set the working directory to /app
