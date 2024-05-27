@@ -303,14 +303,6 @@ const Results = (): JSX.Element => {
       .then(res => res?.lighthouseResult || { error: res.error || 'No Data' }),
   });
 
-  // Get the technologies used to build site, using Wappalyzer
-  const [techStackResults, updateTechStackResults] = useMotherHook({
-    jobId: 'tech-stack',
-    updateLoadingJobs,
-    addressInfo: { address, addressType, expectedAddressTypes: urlTypeOnly },
-    fetchRequest: () => fetch(`${api}/tech-stack?url=${address}`).then(res => parseJson(res)),
-  });
-
   // Get hostnames and associated domains from Shodan
   const [shoadnResults, updateShodanResults] = useMotherHook<ShodanResults>({
     jobId: ['hosts', 'server-info'],
@@ -601,13 +593,6 @@ const Results = (): JSX.Element => {
       Component: LighthouseCard,
       refresh: updateLighthouseResults,
       tags: ['client'],
-    }, {
-      id: 'tech-stack',
-      title: 'Tech Stack',
-      result: techStackResults,
-      Component: TechStackCard,
-      refresh: updateTechStackResults,
-      tags: ['client', 'meta'],
     }, {
       id: 'server-info',
       title: 'Server Info',

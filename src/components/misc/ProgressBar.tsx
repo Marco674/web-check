@@ -189,7 +189,6 @@ const jobNames = [
   'ssl',
   'domain',
   'quality',
-  'tech-stack',
   'server-info',
   'cookies',
   'headers',
