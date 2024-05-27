@@ -71,7 +71,7 @@ fs.readdirSync(dirPath, { withFileTypes: true })
   app.get('/api', async (req, res) => {
     const results = {};
     const { url } = req.query;
-    const maxExecutionTime = process.env.API_TIMEOUT_LIMIT || 20000;
+    const maxExecutionTime = process.env.API_TIMEOUT_LIMIT || 10000;
   
     const executeHandler = async (handler, req, res) => {
       return new Promise(async (resolve, reject) => {
