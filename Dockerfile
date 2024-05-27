@@ -2,7 +2,7 @@
 ARG NODE_VERSION=22
 
 # Specify the Debian version to use, the default is "bullseye"
-ARG OS_VERSION=alpine3.19
+ARG OS_VERSION=alpine3.20
 
 # Use Node.js Docker image as the base image, with specific Node and Debian versions
 FROM node:${NODE_VERSION}-${OS_VERSION} AS build
